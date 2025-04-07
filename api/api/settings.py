@@ -128,9 +128,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # allowed origings
+# important: Django's own server which is runing with
+# python3 manage.py runserver would not set localhost as a domain name for
+# 127.0.0.1 IP address. Then to make sure it is accessible from both
+# domain name and IP address, it is neccessary to add both here in the
+# cors allowed origins. well, I learned this the hard way :)
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
-    "http://localhost:3000",  # Your frontend URL
+    "http://localhost:3000",
 ]
 
 

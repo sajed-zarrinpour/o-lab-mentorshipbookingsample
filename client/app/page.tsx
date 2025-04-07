@@ -10,6 +10,23 @@ const LoginPage = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(''); // Reset error message on new login attempt
+
+    /**
+     * here I am using api call to do a login. The way I noticed the problem with django CORS
+     * was to try accessin other routes, to see what happens. well, they failed to fetch
+     * while they should fire unauthorized action response.
+     * This got me to thinking to double check the CORS. this time I actually reviewed 
+     * The history of my browser (well as I said it was working for me before the meeting).
+     * Then I realized I was calling to domain name instead of IP address.
+     * To be honest, macintash OS is new to me so I considered this:
+     * I take the mapping of localhost as domain name to 127.0.0.1 as IP address as granted,
+     * Yet it is worth to double check if such a mapping is done.
+     * A simple try yields positive result on this theory.
+     * So, I dig a bit deeper and I realised it is actually the django's own developement server
+     * which is not do the mapping. Then, I chose the simplest solution:
+     * 
+     * Add both IP address and domain name to my django CORS white list!
+     */
     const response = await fetch('http://127.0.0.1:8000/api/login', {
       method: 'POST',
       headers: {
