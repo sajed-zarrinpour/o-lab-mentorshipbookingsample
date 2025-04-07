@@ -133,6 +133,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # 127.0.0.1 IP address. Then to make sure it is accessible from both
 # domain name and IP address, it is neccessary to add both here in the
 # cors allowed origins. well, I learned this the hard way :)
+# further tests resulted in me abandoning the use of IP address, django doesn't seem to respect uri's.
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:3000",
