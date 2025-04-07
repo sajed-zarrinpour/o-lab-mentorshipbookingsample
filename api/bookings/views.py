@@ -69,6 +69,7 @@ class BookingView(View):
 @method_decorator(csrf_exempt, name='dispatch')
 class LoginView(View):
     def post(self, request):
+        print('hit')
         try:
             login_data = json.loads(request.body)
             username = login_data.get('username')
